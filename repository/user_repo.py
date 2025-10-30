@@ -152,7 +152,7 @@ class UserRepository(BaseRepo):
             raise ValueError(f"❌ Неверная сумма. Ожидалось {expected_amount}, получено {amount_usdt}")
 
         tx_time = datetime.fromtimestamp(timestamp / 1000)
-        if datetime.now() - tx_time > timedelta(minutes=120):
+        if datetime.now() - tx_time > timedelta(minutes=260):
             raise ValueError("❌ Транзакция старше 5 минут")
 
         new_tx = TransactionModel(transaction_hash=transaction_hash)
