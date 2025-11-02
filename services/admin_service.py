@@ -37,6 +37,7 @@ class AdminService(BaseService):
             return ServiceResult.success(result)
         except Exception as e:
             return ServiceResult.failure(str(e))
+
     #
     # async def distribute_referral_rewards(self, password: str):
     #     if not self.check_password(password):

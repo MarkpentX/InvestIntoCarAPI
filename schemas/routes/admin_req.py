@@ -1,9 +1,11 @@
+from typing import List
+
 from pydantic import BaseModel
 
 class CreateCar(BaseModel):
     password: str
     name: str
-    img: str
+    images: List[str]
     price: float
     roi: int
     rent_1_day: int

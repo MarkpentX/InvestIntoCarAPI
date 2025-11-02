@@ -19,10 +19,10 @@ env.read_env('.env')
 
 url = URL.create(
     drivername='postgresql+asyncpg',
-    username='car_invest_db_user',
-    password='ltf13EyjtMt4Fca9L2CcD9kzHzJysLxj',
-    host='dpg-d410ic8dl3ps73dd6r1g-a.oregon-postgres.render.com',
-    database='car_invest_db',
+    username='car_invest_db_ga2b_user',
+    password='Dk9H8kaa4mja8OyZfqpNcalbWxX190US',
+    host='dpg-d43hvuur433s739hlhrg-a.oregon-postgres.render.com',
+    database='car_invest_db_ga2b',
     port=5432,
 ).render_as_string(hide_password=False)
 # url = "sqlite+aiosqlite:///database.db"

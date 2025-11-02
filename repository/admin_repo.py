@@ -1,7 +1,7 @@
 from sqlalchemy import select, update
 from sqlalchemy.orm import selectinload
 
-from database.models import CarModel, UserModel
+from database.models import CarModel, UserModel, ImageModel
 from .base_repo import BaseRepo
 
 
@@ -10,9 +10,9 @@ class AdminRepository(BaseRepo):
         super().__init__(db_session)
 
     async def create_car(self, request):
+        # Create the car first
         car = CarModel(
             name=request.name,
-            img=request.img,
             price=request.price,
             roi=request.roi,
             rent_1_day=request.rent_1_day,
@@ -23,10 +23,16 @@ class AdminRepository(BaseRepo):
             invested=request.invested
         )
 
-        self._db_session.add(
-            car
-        )
+        self._db_session.add(car)
+        await self._db_session.flush()  # This gets the car ID
+
+        # Create ImageModel objects for each URL
+        for image_url in request.images:
+            image = ImageModel(url=image_url, product_id=car.id)
+            self._db_session.add(image)
+
         await self._db_session.commit()
+        await self._db_session.refresh(car)
         return car
 
     # car = await db_session.get(CarModel, car_id)
